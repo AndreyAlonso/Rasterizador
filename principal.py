@@ -5,8 +5,16 @@
 #       Héctor Andrey Hernández Alonso
 #       Benjamin Ulises Camacho    
 #############################################################
-
 import sys, pygame
+
+
+
+def obtenCoordenada(cuadro,x1, j, x2, distanciaX, distanciaY ):
+    i = x1
+    while i < x2:
+        cuadro.append([i,j,i+distanciaX,j+distanciaY])
+        i = i + distanciaX
+
 
 
 def obtenTam():
@@ -26,7 +34,7 @@ def generaCuadricula(N, x1,y1,x2,y2,screen, cuadro):
 
         starPosY = (x1,j)
         endPosY  = (x2,j)
-        cuadro.append([i,j,i+distanciaX,j+distanciaY])
+        obtenCoordenada(cuadro,x1, j, x2, distanciaX, distanciaY )
         width = 1
         pygame.draw.line(screen, color, starPosX, endPosX, width)
         pygame.draw.line(screen, color, starPosY, endPosY, width)
@@ -45,7 +53,7 @@ def rellenaFigura(cuadro,screen):
             j = c[0]
             while j < c[3]:
                 actual = screen.get_at((int(c[0]+1),int(c[1]+1)))
-                # print("valor de actual",  actual)
+                #print("valor de actual",  actual)
                 if actual != black : 
                     colorB = colorB + 1
                     color = actual
@@ -74,8 +82,10 @@ size = 800, 600
 screen = pygame.display.set_mode(size)
 # Titulo de la ventana
 pygame.display.set_caption("Rasterizador")
-
-imagen = pygame.image.load("hongo.png")
+print("Dame el nombre del archivo ")
+nomArchivo=input()
+nomArchivo=nomArchivo+'.png'
+imagen = pygame.image.load(nomArchivo)
 tamImagen = imagen.convert()
 screen.blit(imagen,(100,100))
 
@@ -105,4 +115,6 @@ while run:
         if event.type == pygame.QUIT: run = False
 
 pygame.quit()
+
+
 
