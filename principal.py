@@ -5,7 +5,7 @@
 #       Héctor Andrey Hernández Alonso
 #       Benjamin Ulises Camacho    
 #############################################################
-import sys, pygame
+import sys, pygame,os
 
 
 
@@ -82,6 +82,8 @@ size = 800, 600
 screen = pygame.display.set_mode(size)
 # Titulo de la ventana
 pygame.display.set_caption("Rasterizador")
+print("Archivos en el directorio")
+print(os.listdir())
 print("Dame el nombre del archivo ")
 nomArchivo=input()
 nomArchivo=nomArchivo+'.png'
